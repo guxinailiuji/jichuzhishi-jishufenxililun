@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>交易技术分析白皮书 by 不霁何虹</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide-icons@latest/dist/umd/lucide.min.js">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-900 min-h-screen">
+    <!-- 彩色渐变背景装饰 -->
+    <div class="fixed top-0 right-0 w-64 h-64 bg-gradient-to-br from-pink-400 via-purple-500 to-indigo-600 opacity-20 rounded-bl-full -z-10 animate-pulse animate-float"></div>
+    <div class="fixed top-10 right-10 w-32 h-32 bg-gradient-to-tr from-yellow-300 via-green-400 to-blue-500 opacity-20 rounded-full -z-10 animate-pulse animate-spin-slow" style="animation-delay: 1s;"></div>
+    
+    <header class="bg-black text-white py-6 px-4 md:px-8">
+        <div class="container mx-auto">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-white">
+                        <path d="M3 13.2L8.5 11.75M21 13.2L15.5 11.75M8.5 11.75L12 4L15.5 11.75M8.5 11.75L12 20L15.5 11.75" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h1 class="text-xl font-medium">交易技术分析白皮书 by 不霁何虹</h1>
+                </div>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="#theories" class="hover:text-gray-300 transition-colors">交易理论</a>
+                    <a href="#indicators" class="hover:text-gray-300 transition-colors">技术指标</a>
+                    <a href="#resources" class="hover:text-gray-300 transition-colors">学习资源</a>
+                </nav>
+                <!-- 社交媒体链接 -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="https://space.bilibili.com" target="_blank" class="text-white hover:text-blue-400 transition-colors" title="Bilibili">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide"><path d="M4.5 2h15a2.5 2.5 0 0 1 2.5 2.5v12a2.5 2.5 0 0 1-2.5 2.5h-3.5l-4 3v-3h-7.5a2.5 2.5 0 0 1-2.5-2.5v-12a2.5 2.5 0 0 1 2.5-2.5z"/><path d="M8 15h8"/><path d="M8 12h8"/><path d="M8 9h5"/></svg>
+                    </a>
+                    <a href="https://youtube.com" target="_blank" class="text-white hover:text-red-500 transition-colors" title="YouTube">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-youtube"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" class="text-white hover:text-blue-400 transition-colors" title="Twitter">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-twitter"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+                    </a>
+                    <a href="https://www.douyin.com" target="_blank" class="text-white hover:text-pink-500 transition-colors" title="抖音">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide"><path d="M21 8v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5z"/><path d="M10 12a3 3 0 1 0 3 3V6c.333 1 1.6 3 4 3"/></svg>
+                    </a>
+                    <a href="https://www.xiaohongshu.com" target="_blank" class="text-white hover:text-red-400 transition-colors" title="小红书">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 8h6"/><path d="M12 16V8"/></svg>
+                    </a>
+                </div>
+                <button id="menu-toggle" class="md:hidden text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu">
+                        <line x1="4" x2="20" y1="12" y2="12"></line>
+                        <line x1="4" x2="20" y1="6" y2="6"></line>
+                        <line x1="4" x2="20" y1="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="md:hidden hidden mt-4">
+                <nav class="flex flex-col space-y-3">
+                    <a href="#theories" class="hover:text-gray-300 transition-colors">交易理论</a>
+                    <a href="#indicators" class="hover:text-gray-300 transition-colors">技术指标</a>
+                    <a href="#resources" class="hover:text-gray-300 transition-colors">学习资源</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 md:px-8">
+        <section id="theories" class="mb-16">
+            <div class="mb-8">
+                <h2 class="text-2xl font-semibold border-b border-gray-200 pb-2 mb-4">交易理论</h2>
+                <p class="text-gray-600 mb-6">交易理论提供了分析和理解市场的框架，帮助交易者制定决策。每种理论都有其独特的视角和应用场景。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- 海龟交易法 -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow card-hover">
+                    <div class="bg-blue-50 px-6 py-4 border-b border-gray-100">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 mr-3 flex-shrink-0 bg-blue-100 rounded-full flex items-center justify-center theory-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-700">
+                                    <path d="m12 16 4-4-4-4"/>
+                                    <path d="M8 12h8"/>
+                                    <circle cx="12" cy="12" r="10"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-blue-900">海龟交易法</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700 mb-4">由理查德·丹尼斯在20世纪80年代开发的趋势跟踪交易策略，通过捕捉市场大趋势来获取长期稳定盈利。源于丹尼斯与合伙人威廉姆·埃克哈特的一场著名赌约，他认为"交易是可以被教授的"，并从街上招募了一群普通人进行培训，被称为"海龟实验"。</p>
+                        
+                        <h4 class="text-lg font-medium text-gray-800 mb-2">核心原则</h4>
+                        <ul class="list-disc list-inside text-gray-700 mb-4">
+                            <li>趋势跟随 - 利用市场趋势的延续性</li>
+                            <li>唐奇安通道 - 20日高点突破买入，10日低点突破卖出</li>
+                            <li>ATR（真实波幅均值）- 用于仓位管理，风险固定为账户的2%</li>
+                            <li>金字塔式加仓 - 按0.5N间隔增加仓位，最多4次</li>
+                            <li>严格的风险管理和头寸规模控制</li>
+                        </ul>
+
+                        <h4 class="text-lg font-medium text-gray-800 mb-2">交易类型</h4>
+                        <ul class="list-disc list-inside text-gray-700 mb-4">
+                            <li>系统一(S1) - 入场：20日突破，出场：10日反向突破</li>
+                            <li>系统二(S2) - 入场：55日突破，出场：20日反向突破</li>
+                            <li>S1适合短期趋势，S2适合长期趋势</li>
+                            <li>建议两种系统结合使用，分配50%/50%资金比例</li>
+                        </ul>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <h5 class="font-medium text-green-700 mb-1">优点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>完整的交易系统</li>
+                                    <li>有效的风险管理</li>
+                                    <li>规则简单易懂</li>
+                                    <li>适应性强</li>
+                                    <li>可量化回测</li>
+                                    <li>战胜羊群心理</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-red-700 mb-1">缺点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>浮盈可能回吐</li>
+                                    <li>震荡市表现不佳</li>
+                                    <li>需要耐心和纪律</li>
+                                    <li>回撤可能较大</li>
+                                    <li>胜率较低（约30-40%）</li>
+                                    <li>心理压力大</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="text-gray-700 text-sm italic mb-4">
+                            "截断亏损，让利润奔跑" - 海龟交易法则的精髓
+                        </div>
+
+                        <div class="text-sm text-gray-600 mt-4 bg-blue-50 p-4 rounded">
+                            <strong>现代应用：</strong>
+                            <p>现代海龟交易者通常会对原始规则做出调整，如使用指数移动平均线替代唐奇安通道，调整ATR周期或波动率过滤器，甚至加入市场状态判断，但核心理念保持不变。在2007-2008年金融危机中，遵循海龟系统的交易者取得了显著的收益。</p>
+                        </div>
+                        
+                        <div class="flex justify-end mt-4">
+                            <a href="https://www.investopedia.com/articles/trading/08/turtle-trading.asp" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm flex items-center">
+                                了解更多
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
+                                    <path d="M7 7h10v10"></path>
+                                    <path d="M7 17 17 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 斐波那契理论 -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow card-hover">
+                    <div class="bg-blue-50 px-6 py-4 border-b border-gray-100">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 mr-3 flex-shrink-0 bg-blue-100 rounded-full flex items-center justify-center theory-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-700">
+                                    <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                                    <path d="M7 14h10"/>
+                                    <path d="M9 7h6"/>
+                                    <path d="M17 17H7"/>
+                                    <path d="M19 4l-3 3"/>
+                                    <path d="M8 19l-3-3"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-blue-900">斐波那契理论</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700 mb-4">基于斐波那契数列（1, 1, 2, 3, 5, 8, 13, 21...）及其衍生比例（0.236, 0.382, 0.5, 0.618, 0.764），用于预测市场可能的支撑和阻力位。</p>
+                        
+                        <h4 class="text-lg font-medium text-gray-800 mb-2">应用方式</h4>
+                        <ul class="list-disc list-inside text-gray-700 mb-4">
+                            <li>斐波那契回撤 - 预测价格回调水平</li>
+                            <li>斐波那契扩展 - 预测价格未来目标</li>
+                            <li>基于黄金比例(61.8%)的支撑阻力分析</li>
+                            <li>配合其他指标使用，增强信号可靠性</li>
+                        </ul>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <h5 class="font-medium text-green-700 mb-1">优点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>应用广泛多样</li>
+                                    <li>提供重要参考位</li>
+                                    <li>增强交易信心</li>
+                                    <li>适用于各类市场</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-red-700 mb-1">缺点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>理解和应用难度较高</li>
+                                    <li>依赖历史数据</li>
+                                    <li>需要结合其他指标</li>
+                                    <li>存在主观性</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="text-gray-700 text-sm italic">
+                            "0.618是一个非常关键的支撑位，当趋势跌破或涨破0.618时，通常被认为趋势结束"
+                        </div>
+                        
+                        <div class="flex justify-end mt-4">
+                            <a href="https://www.investopedia.com/terms/f/fibonaccilines.asp" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm flex items-center">
+                                了解更多
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
+                                    <path d="M7 7h10v10"></path>
+                                    <path d="M7 17 17 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 缠论 -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow card-hover">
+                    <div class="bg-blue-50 px-6 py-4 border-b border-gray-100">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 mr-3 flex-shrink-0 bg-blue-100 rounded-full flex items-center justify-center theory-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-700">
+                                    <path d="M18 8c0-2.21-4-4-4-4s-4 1.79-4 4 4 2 4 6-4 4-4 4 4 1.79 4 4-4 2-4 6 4-2 4-4"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-blue-900">缠论</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700 mb-4">由"缠中说禅"提出的市场分析理论，试图用数学方法和完全分类的方式来解析股价运行规律，被称为"市场哲学的数学原理"。</p>
+                        
+                        <h4 class="text-lg font-medium text-gray-800 mb-2">核心概念</h4>
+                        <ul class="list-disc list-inside text-gray-700 mb-4">
+                            <li>形态学 - 通过K线构成的形态分析市场结构</li>
+                            <li>动力学 - 通过背驰、中枢和区间套判断买卖点</li>
+                            <li>走势终完美 - 构建笔、线段、中枢到趋势的五级结构</li>
+                            <li>级别分析 - 从1分钟到年线的多级别观察</li>
+                        </ul>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <h5 class="font-medium text-green-700 mb-1">优点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>宏观动态把握走势</li>
+                                    <li>多级别细致观察</li>
+                                    <li>独特分析方法</li>
+                                    <li>系统性强</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-red-700 mb-1">缺点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>量化角度不足</li>
+                                    <li>"千人千缠"现象</li>
+                                    <li>多解性强</li>
+                                    <li>学习曲线陡峭</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="text-gray-700 text-sm italic">
+                            "任何级别的走势都能分解为三类走势类型：趋势向上、趋势向下和盘整"
+                        </div>
+                        
+                        <div class="flex justify-end mt-4">
+                            <a href="https://wiki.mbalib.com/wiki/%E7%BC%A0%E4%B8%AD%E8%AF%B4%E7%A6%85%E7%90%86%E8%AE%BA" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm flex items-center">
+                                了解更多
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
+                                    <path d="M7 7h10v10"></path>
+                                    <path d="M7 17 17 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 裸K交易 -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow card-hover">
+                    <div class="bg-blue-50 px-6 py-4 border-b border-gray-100">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 mr-3 flex-shrink-0 bg-blue-100 rounded-full flex items-center justify-center theory-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-700">
+                                    <path d="M3 3v18h18"/>
+                                    <path d="M7 17v-5"/>
+                                    <path d="M11 17v-8"/>
+                                    <path d="M15 17v-11"/>
+                                    <path d="M19 17v-6"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-blue-900">裸K交易</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700 mb-4">也称为价格行为交易，是一种通过直接观察K线图表来分析市场的方法，不依赖其他技术指标，而是专注于价格本身的行为模式。</p>
+                        
+                        <h4 class="text-lg font-medium text-gray-800 mb-2">分析要点</h4>
+                        <ul class="list-disc list-inside text-gray-700 mb-4">
+                            <li>K线形态识别（长阳线、长阴线、十字星等）</li>
+                            <li>支撑阻力区间判断</li>
+                            <li>价格波动轨迹和停留意愿分析</li>
+                            <li>结合大周期结构和动量转换</li>
+                        </ul>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <h5 class="font-medium text-green-700 mb-1">优点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>简单易懂</li>
+                                    <li>适用性强</li>
+                                    <li>准确性和可靠性高</li>
+                                    <li>直接反映市场实况</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-red-700 mb-1">缺点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>依赖经验积累</li>
+                                    <li>需要严格风险控制</li>
+                                    <li>影线分析多解性</li>
+                                    <li>小周期随机性强</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="text-gray-700 text-sm italic">
+                            "价格在低位停留表明空头占优，在高位停留表明多头占优"
+                        </div>
+                        
+                        <div class="flex justify-end mt-4">
+                            <a href="https://www.investopedia.com/terms/p/price-action.asp" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm flex items-center">
+                                了解更多
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
+                                    <path d="M7 7h10v10"></path>
+                                    <path d="M7 17 17 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 箱体理论 -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow card-hover">
+                    <div class="bg-blue-50 px-6 py-4 border-b border-gray-100">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 mr-3 flex-shrink-0 bg-blue-100 rounded-full flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-700">
+                                    <rect width="15" height="13" x="4.5" y="5.5" rx="1"/>
+                                    <path d="M7 15a6.47 6.47 0 0 1 5 0 6.47 6.47 0 0 0 5 0"/>
+                                    <path d="M7 12a6.47 6.47 0 0 1 5 0 6.47 6.47 0 0 0 5 0"/>
+                                    <path d="M7 9a6.47 6.47 0 0 1 5 0 6.47 6.47 0 0 0 5 0"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-blue-900">箱体理论</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700 mb-4">通过识别价格在特定区间内的横向移动形成的"矩形"结构来预测价格的突破方向，最早由尼古拉斯·达瓦创立。</p>
+                        
+                        <h4 class="text-lg font-medium text-gray-800 mb-2">箱体类型</h4>
+                        <ul class="list-disc list-inside text-gray-700 mb-4">
+                            <li>水平箱体 - 价格在稳定范围内波动</li>
+                            <li>递增/递减箱体 - 价格波动范围逐渐扩大/缩小</li>
+                            <li>旗形箱体 - 价格快速变动后进入狭窄区间</li>
+                            <li>波浪箱体 - 价格连续上涨下跌无明显趋势</li>
+                        </ul>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <h5 class="font-medium text-green-700 mb-1">优点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>简单易懂</li>
+                                    <li>明确的进出场点</li>
+                                    <li>风险控制清晰</li>
+                                    <li>时间越长价值越高</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-red-700 mb-1">缺点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>判断具有主观性</li>
+                                    <li>忽略基本面因素</li>
+                                    <li>可能出现假突破</li>
+                                    <li>部分观点认为仅适用于牛市</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="text-gray-700 text-sm italic">
+                            "价格长期在一个区间内波动，突破箱体上沿看涨，突破下沿看跌"
+                        </div>
+                        
+                        <div class="flex justify-end mt-4">
+                            <a href="https://www.investopedia.com/terms/r/rangeboundtrading.asp" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm flex items-center">
+                                了解更多
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
+                                    <path d="M7 7h10v10"></path>
+                                    <path d="M7 17 17 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 道氏理论 -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow card-hover">
+                    <div class="bg-blue-50 px-6 py-4 border-b border-gray-100">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 mr-3 flex-shrink-0 bg-blue-100 rounded-full flex items-center justify-center theory-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-700">
+                                    <path d="M12 16c0 2.21-4 4-4 4s-4-1.79-4-4 4-4 4-4 4 1.79 4 4z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-blue-900">道氏理论</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700 mb-4">由《华尔街日报》创始人查尔斯·道在19世纪末创立的市场理论，认为市场价格能够反映所有信息，价格运动有规律可循。是技术分析的基础理论，对今日趋势跟踪系统影响深远。</p>
+                        
+                        <h4 class="text-lg font-medium text-gray-800 mb-2">核心原则</h4>
+                        <ul class="list-disc list-inside text-gray-700 mb-4">
+                            <li>市场反映一切 - 价格已包含所有已知信息</li>
+                            <li>三种趋势 - 主要趋势(年)、次级趋势(月)、短期趋势(日)</li>
+                            <li>三个阶段 - 积累期、跟进期、派发期</li>
+                            <li>相互验证 - 指数相互确认才能形成真正信号</li>
+                            <li>成交量确认 - 成交量应与趋势一致</li>
+                        </ul>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <h5 class="font-medium text-green-700 mb-1">优点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>技术分析基础</li>
+                                    <li>经受时间检验</li>
+                                    <li>强调趋势重要性</li>
+                                    <li>思路清晰简单</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-red-700 mb-1">缺点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>信号有滞后性</li>
+                                    <li>无明确买卖点</li>
+                                    <li>忽略基本面分析</li>
+                                    <li>现代市场变化快</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="text-gray-700 text-sm italic">
+                            "潮流不可逆，直到明确的反转信号出现" - 道氏理论六大基本原则之一
+                        </div>
+                        
+                        <div class="flex justify-end mt-4">
+                            <a href="https://www.investopedia.com/terms/d/dowtheory.asp" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm flex items-center">
+                                了解更多
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
+                                    <path d="M7 7h10v10"></path>
+                                    <path d="M7 17 17 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 谐波形态交易 -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow card-hover">
+                    <div class="bg-blue-50 px-6 py-4 border-b border-gray-100">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 mr-3 flex-shrink-0 bg-blue-100 rounded-full flex items-center justify-center theory-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-700">
+                                    <path d="M12 16c0 2.21-4 4-4 4s-4-1.79-4-4 4-4 4-4 4 1.79 4 4z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-blue-900">谐波形态交易</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700 mb-4">结合斐波那契回撤与几何形态的高级分析方法，通过识别市场中重复出现的价格模式来预测潜在反转点，由斯科特·卡尼(Scott Carney)系统化提出。</p>
+                        
+                        <h4 class="text-lg font-medium text-gray-800 mb-2">常见形态</h4>
+                        <ul class="list-disc list-inside text-gray-700 mb-4">
+                            <li>蝴蝶形态(Butterfly Pattern) - 延伸形态，形似蝴蝶展翅</li>
+                            <li>蝙蝠形态(Bat Pattern) - 更深回调的形态，回撤比0.886</li>
+                            <li>网格形态(Gartley Pattern) - 经典"M/W"形态，精确回撤比</li>
+                            <li>螃蟹形态(Crab Pattern) - 更大延伸，极端价格形态</li>
+                            <li>鲨鱼形态(Shark Pattern) - 形如鲨鱼嘴，攻击性形态</li>
+                        </ul>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <h5 class="font-medium text-green-700 mb-1">优点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>精确的进场出场点</li>
+                                    <li>风险控制明确</li>
+                                    <li>数学基础扎实</li>
+                                    <li>适合各种时间周期</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-red-700 mb-1">缺点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>形态识别复杂</li>
+                                    <li>需要大量练习</li>
+                                    <li>易受市场突发事件干扰</li>
+                                    <li>掌握难度较高</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="text-gray-700 text-sm italic">
+                            "市场中的价格波动不仅仅是随机的，而是遵循可识别的几何结构和比例关系"
+                        </div>
+                        
+                        <div class="flex justify-end mt-4">
+                            <a href="https://www.investopedia.com/articles/forex/11/harmonic-patterns-in-the-currency-markets.asp" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm flex items-center">
+                                了解更多
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
+                                    <path d="M7 7h10v10"></path>
+                                    <path d="M7 17 17 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 波浪理论 -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow card-hover">
+                    <div class="bg-blue-50 px-6 py-4 border-b border-gray-100">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 mr-3 flex-shrink-0 bg-blue-100 rounded-full flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-700">
+                                    <path d="M12 16c0 2.21-4 4-4 4s-4-1.79-4-4 4-4 4-4 4 1.79 4 4z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-blue-900">艾略特波浪理论</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700 mb-4">通过识别重复出现的价格模式或"波浪"来预测价格变动。认为市场由五浪上涨（推动浪）和三浪下跌（调整浪）组成，形成"五上三下"的完整周期。</p>
+                        
+                        <h4 class="text-lg font-medium text-gray-800 mb-2">核心概念</h4>
+                        <ul class="list-disc list-inside text-gray-700 mb-4">
+                            <li>推动浪 - 由五个子波组成，与主趋势方向相同</li>
+                            <li>调整浪 - 由三个子波组成，与主趋势方向相反</li>
+                            <li>结合斐波那契 - 用于计算波浪的回撤位和延伸位</li>
+                            <li>波浪级别 - 从大浪到小浪的嵌套结构</li>
+                        </ul>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <h5 class="font-medium text-green-700 mb-1">优点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>提前预测新趋势</li>
+                                    <li>波浪结构描述详细</li>
+                                    <li>无时间滞后</li>
+                                    <li>全面分析不同周期</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-red-700 mb-1">缺点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>规则复杂，学习曲线陡峭</li>
+                                    <li>波浪识别有主观性</li>
+                                    <li>浪的层次确认难</li>
+                                    <li>忽略成交量研究</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="text-gray-700 text-sm italic">
+                            "市场价格倾向于按照一定的周期运行，股价的变动呈现波浪式前进"
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wyckoff Method -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow card-hover">
+                    <div class="bg-teal-50 px-6 py-4 border-b border-gray-100">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 mr-3 flex-shrink-0 bg-teal-100 rounded-full flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-teal-700">
+                                    <path d="M17 3v10"/>
+                                    <rect width="12" height="14" x="6" y="7" rx="2"/>
+                                    <path d="M6 21h12"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-teal-900">威科夫方法</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700 mb-4">由理查德·威科夫(Richard Wyckoff)在20世纪初开发的市场分析方法，通过价格与成交量关系来判断主力资金行为，被誉为"主力行为分析之父"。</p>
+                        
+                        <h4 class="text-lg font-medium text-gray-800 mb-2">市场周期</h4>
+                        <ul class="list-disc list-inside text-gray-700 mb-4">
+                            <li>积累阶段 - 聪明资金开始建仓，价格横盘震荡</li>
+                            <li>上涨阶段 - 供求失衡，价格突破交易区间向上</li>
+                            <li>分配阶段 - 聪明资金出货，散户接盘，价格再次横盘</li>
+                            <li>下跌阶段 - 卖压主导，价格突破支撑下行</li>
+                        </ul>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <h5 class="font-medium text-green-700 mb-1">优点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>透视主力资金行为</li>
+                                    <li>价量结合分析更全面</li>
+                                    <li>具体明确的交易规则</li>
+                                    <li>独到的市场结构视角</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-red-700 mb-1">缺点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>学习曲线较陡峭</li>
+                                    <li>模式识别有主观性</li>
+                                    <li>需长时间观察市场</li>
+                                    <li>高频交易环境适用性低</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="text-gray-700 text-sm italic">
+                            "市场不会透露它的秘密，但会留下痕迹，聪明的交易者会研究这些痕迹" - 威科夫定律
+                        </div>
+                        
+                        <div class="flex justify-end mt-4">
+                            <a href="https://www.investopedia.com/articles/active-trading/070715/making-money-wyckoff-way.asp" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm flex items-center">
+                                了解更多
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
+                                    <path d="M7 7h10v10"></path>
+                                    <path d="M7 17 17 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 市场结构理论 -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow card-hover">
+                    <div class="bg-amber-50 px-6 py-4 border-b border-gray-100">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 mr-3 flex-shrink-0 bg-amber-100 rounded-full flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-amber-700">
+                                    <polyline points="9 10 4 15 9 20"/>
+                                    <path d="M20 4v7a4 4 0 0 1-4 4H4"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-amber-900">市场结构理论</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700 mb-4">市场结构理论(Market Structure)关注价格形成的高点低点结构，通过识别高低点的变化模式来判断趋势方向和可能的转折点，是职业交易者广泛使用的核心分析框架。</p>
+                        
+                        <h4 class="text-lg font-medium text-gray-800 mb-2">结构要素</h4>
+                        <ul class="list-disc list-inside text-gray-700 mb-4">
+                            <li>Higher High (HH)/Higher Low (HL) - 更高高点/更高低点，上升趋势特征</li>
+                            <li>Lower High (LH)/Lower Low (LL) - 更低高点/更低低点，下降趋势特征</li>
+                            <li>Equal High (EH)/Equal Low (EL) - 等高点/等低点，盘整特征</li>
+                            <li>结构变化 - 趋势转变的第一信号（如上升转下降时出现LH+LL）</li>
+                        </ul>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <h5 class="font-medium text-green-700 mb-1">优点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>本质性趋势分析方法</li>
+                                    <li>适用于任何时间周期</li>
+                                    <li>客观判断标准</li>
+                                    <li>明确的止损点位定位</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-red-700 mb-1">缺点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>有时滞后于价格变化</li>
+                                    <li>低时间周期噪音大</li>
+                                    <li>需要配合其他指标</li>
+                                    <li>形态确认需要时间</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="text-gray-700 text-sm italic">
+                            "趋势是高点和低点的序列，而非单纯的价格方向。理解这一点，你就掌握了交易的关键"
+                        </div>
+                        
+                        <div class="flex justify-end mt-4">
+                            <a href="https://forextraininggroup.com/trade-market-structure/" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm flex items-center">
+                                了解更多
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
+                                    <path d="M7 7h10v10"></path>
+                                    <path d="M7 17 17 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="indicators" class="mb-16">
+            <div class="mb-8">
+                <h2 class="text-2xl font-semibold border-b border-gray-200 pb-2 mb-4">技术指标</h2>
+                <p class="text-gray-600 mb-6">技术指标是基于价格和/或成交量数据通过数学计算得出的数值，用于预测价格变动趋势和可能的转折点。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- 均线理论 -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow card-hover">
+                    <div class="bg-purple-50 px-6 py-4 border-b border-gray-100">
+                        <h3 class="text-xl font-semibold text-purple-900">均线理论</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700 mb-4">均线是最古老也最常用的技术分析工具，通过计算特定时期内价格的平均值，平滑价格波动，帮助交易者识别趋势方向和动量变化。常用周期有5日、10日、20日、60日和120日等。</p>
+                        
+                        <h4 class="text-lg font-medium text-gray-800 mb-2">常见均线系统</h4>
+                        <ul class="list-disc list-inside text-gray-700 mb-4">
+                            <li>双均线系统 - 常用短期(5/10日)和长期(20/30日)均线交叉</li>
+                            <li>三均线系统 - 短(5日)、中(20日)、长(60日)周期配合判断</li>
+                            <li>多均线系统 - 结合多条不同周期均线全面分析市场</li>
+                            <li>黄金交叉与死亡交叉 - 短期均线向上/向下穿越长期均线</li>
+                        </ul>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <h5 class="font-medium text-green-700 mb-1">优点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>简单易懂</li>
+                                    <li>过滤市场噪音</li>
+                                    <li>提供趋势方向</li>
+                                    <li>支撑阻力参考</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-red-700 mb-1">缺点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>存在滞后性</li>
+                                    <li>盘整市场效果差</li>
+                                    <li>假突破常见</li>
+                                    <li>单独使用可靠性不高</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="text-sm text-gray-600 mt-4">
+                            <strong>参数选择：</strong>
+                            <p>短期交易者偏好短周期均线(5、10日)，中长期投资者偏好长周期均线(60、120日)。跨市场分析时需考虑各市场特性选择合适参数。均线可能需要根据市场波动率进行调整。</p>
+                        </div>
+                        
+                        <div class="flex justify-end mt-4">
+                            <a href="https://www.investopedia.com/terms/m/movingaverage.asp" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm flex items-center">
+                                了解更多
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
+                                    <path d="M7 7h10v10"></path>
+                                    <path d="M7 17 17 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 布林带 -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow card-hover">
+                    <div class="bg-purple-50 px-6 py-4 border-b border-gray-100">
+                        <h3 class="text-xl font-semibold text-purple-900">布林带(BOLL)</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700 mb-4">由约翰·布林格(John Bollinger)发明的统计学指标，由中轨(N日移动平均线)和分别位于标准差倍数之上下的上下轨组成，反映价格波动范围和市场波动性。</p>
+                        
+                        <h4 class="text-lg font-medium text-gray-800 mb-2">指标解读</h4>
+                        <ul class="list-disc list-inside text-gray-700 mb-4">
+                            <li>带宽扩大 - 波动性增加，可能出现趋势行情</li>
+                            <li>带宽收窄 - 波动性减弱，可能迎来大行情前的蓄势</li>
+                            <li>价格触及上轨 - 可能超买，考虑卖出</li>
+                            <li>价格触及下轨 - 可能超卖，考虑买入</li>
+                            <li>价格突破带状区域 - 强势信号，可能形成单边趋势</li>
+                        </ul>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <h5 class="font-medium text-green-700 mb-1">优点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>直观显示波动性</li>
+                                    <li>提供动态支撑阻力</li>
+                                    <li>适合震荡市操作</li>
+                                    <li>量化超买超卖区域</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-red-700 mb-1">缺点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>趋势市场效果不佳</li>
+                                    <li>参数设置影响大</li>
+                                    <li>有一定滞后性</li>
+                                    <li>不适合所有市场阶段</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="text-sm text-gray-600 mt-4">
+                            <strong>参数设置：</strong>
+                            <p>常用参数为(20,2)，即20日移动平均线和2倍标准差；不同市场特性可能需要调整，如商品期货可能需要更宽通道(如2.5倍标准差)；波动较小的市场可能需要较窄通道。</p>
+                        </div>
+                        
+                        <div class="flex justify-end mt-4">
+                            <a href="https://www.investopedia.com/terms/b/bollingerbands.asp" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm flex items-center">
+                                了解更多
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
+                                    <path d="M7 7h10v10"></path>
+                                    <path d="M7 17 17 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 裸K -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow card-hover">
+                    <div class="bg-purple-50 px-6 py-4 border-b border-gray-100">
+                        <h3 class="text-xl font-semibold text-purple-900">裸K分析</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700 mb-4">不依赖技术指标，仅通过观察K线图表形态和模式来进行市场分析的方法。主要关注价格行为、K线组合形态、支撑阻力位以及市场结构变化等。</p>
+                        
+                        <h4 class="text-lg font-medium text-gray-800 mb-2">核心形态</h4>
+                        <ul class="list-disc list-inside text-gray-700 mb-4">
+                            <li>吞没形态 - 当前K线完全覆盖前一根K线实体</li>
+                            <li>锤头/倒锤 - 带有长下/上影线的反转信号</li>
+                            <li>启明星/黄昏星 - 三根K线组成的反转形态</li>
+                            <li>十字星 - 开盘价与收盘价接近，表示犹豫</li>
+                            <li>平台突破 - 价格突破盘整区域，趋势开始</li>
+                        </ul>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <h5 class="font-medium text-green-700 mb-1">优点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>回到交易本质</li>
+                                    <li>避免指标陷阱</li>
+                                    <li>反应更快捷</li>
+                                    <li>简单有效</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-red-700 mb-1">缺点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>主观性较强</li>
+                                    <li>经验要求高</li>
+                                    <li>容易过度交易</li>
+                                    <li>形态识别难度大</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="text-sm text-gray-600 mt-4">
+                            <strong>实战提示：</strong>
+                            <p>新手建议先关注大型K线形态，如大阳/阴线、明显的吞没形态等；配合支撑阻力位和市场结构使用效果更佳；多周期分析能提高准确性；不要孤立看待单根K线，而是关注上下文关系。</p>
+                        </div>
+                        
+                        <div class="flex justify-end mt-4">
+                            <a href="https://www.investopedia.com/terms/n/nakedtrading.asp" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm flex items-center">
+                                了解更多
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
+                                    <path d="M7 7h10v10"></path>
+                                    <path d="M7 17 17 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MACD -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow card-hover">
+                    <div class="bg-purple-50 px-6 py-4 border-b border-gray-100">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 mr-3 flex-shrink-0 bg-purple-100 rounded-full flex items-center justify-center indicator-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-700">
+                                    <path d="M3 8h12l4 8 3-4"/>
+                                    <path d="M21 12v3"/>
+                                    <path d="M21 18v.01"/>
+                                    <path d="M3 3v18h18"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-purple-900">MACD指标</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700 mb-4">平滑异同移动平均线，通过分析短期(12日)和长期(26日)指数移动平均线的差值来识别趋势变化。由MACD线(DIF)、信号线(DEA,9日)和柱状图(BAR)组成。由杰拉尔德·阿佩尔(Gerald Appel)于20世纪70年代开发，是技术分析中最常用的指标之一。</p>
+                        
+                        <h4 class="text-lg font-medium text-gray-800 mb-2">信号类型</h4>
+                        <ul class="list-disc list-inside text-gray-700 mb-4">
+                            <li>金叉/死叉 - MACD线上穿/下穿信号线</li>
+                            <li>零轴交叉 - MACD线上穿/下穿0轴</li>
+                            <li>背离 - 价格与MACD走势不一致</li>
+                            <li>柱状图变化 - 由负转正/由正转负</li>
+                            <li>双重底/顶 - MACD形成W底/M顶形态</li>
+                        </ul>
+
+                        <h4 class="text-lg font-medium text-gray-800 mb-2">参数优化</h4>
+                        <ul class="list-disc list-inside text-gray-700 mb-4">
+                            <li>长周期行情 - 可尝试(19,39,9)参数</li>
+                            <li>短周期行情 - 可尝试(5,13,5)参数</li>
+                            <li>外汇市场 - (5,35,5)较为常用</li>
+                            <li>股票市场 - 标准(12,26,9)广泛适用</li>
+                        </ul>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <h5 class="font-medium text-green-700 mb-1">优点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>能反映趋势变化</li>
+                                    <li>过滤短期噪声</li>
+                                    <li>趋势性和稳定性好</li>
+                                    <li>信号明确易懂</li>
+                                    <li>可视化程度高</li>
+                                    <li>应用范围广泛</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-red-700 mb-1">缺点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>存在滞后性</li>
+                                    <li>震荡市易产生错误信号</li>
+                                    <li>参数可能需要调整</li>
+                                    <li>需结合其他指标</li>
+                                    <li>连续金叉/死叉可信度降低</li>
+                                    <li>不同品种适配性不同</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="text-sm text-gray-600 mt-4">
+                            <strong>实用技巧：</strong>
+                            <p>金叉最好位于0轴附近，同时需成交量配合；两次死叉后可能迎来大跌；底背离(价格新低而MACD未新低)提供较好买点；顶背离(价格新高而MACD未新高)提供较好卖点。背离信号最好结合RSI或KDJ等其他指标确认。</p>
+                        </div>
+
+                        <div class="text-sm text-gray-600 mt-4 bg-purple-50 p-4 rounded">
+                            <strong>MACD计算方法：</strong>
+                            <ol class="list-decimal list-inside">
+                                <li>EMA(12) = 12日指数移动平均线</li>
+                                <li>EMA(26) = 26日指数移动平均线</li>
+                                <li>DIF = EMA(12) - EMA(26)</li>
+                                <li>DEA = DIF的9日指数移动平均线</li>
+                                <li>MACD = 2 × (DIF - DEA)</li>
+                            </ol>
+                            <p class="mt-2">在柱状图中，MACD为正时显示为红色柱(多头市场)，为负时显示为绿色柱(空头市场)。柱的高度表示多空力量强度。</p>
+                        </div>
+                        
+                        <div class="flex justify-end mt-4">
+                            <a href="https://www.investopedia.com/terms/m/macd.asp" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm flex items-center">
+                                了解更多
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
+                                    <path d="M7 7h10v10"></path>
+                                    <path d="M7 17 17 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RSI -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow card-hover">
+                    <div class="bg-purple-50 px-6 py-4 border-b border-gray-100">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 mr-3 flex-shrink-0 bg-purple-100 rounded-full flex items-center justify-center indicator-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-700">
+                                    <path d="M2 12h2"/>
+                                    <rect x="6" y="3" width="12" height="19" rx="2"/>
+                                    <path d="M20 12h2"/>
+                                    <path d="M12 8v8"/>
+                                    <path d="M9 14l3-3 3 3"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-purple-900">RSI指标</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700 mb-4">衡量价格变动速度和幅度的动量指标，通过比较一段时间内平均涨跌幅度来判断超买超卖情况。数值在0-100之间，通常70以上为超买，30以下为超卖。</p>
+                        
+                        <h4 class="text-lg font-medium text-gray-800 mb-2">使用方法</h4>
+                        <ul class="list-disc list-inside text-gray-700 mb-4">
+                            <li>超买超卖 - RSI>70考虑卖出，<30考虑买入</li>
+                            <li>背离分析 - 价格与RSI走势不一致预示反转</li>
+                            <li>中线分析 - >50上升力量占优，<50下跌力量占优</li>
+                            <li>趋势确认 - RSI方向与价格方向一致确认趋势</li>
+                        </ul>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <h5 class="font-medium text-green-700 mb-1">优点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>有效识别超买超卖</li>
+                                    <li>过滤市场噪音</li>
+                                    <li>适用于多种市场</li>
+                                    <li>信号明确易懂</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-red-700 mb-1">缺点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>存在滞后性</li>
+                                    <li>可能产生假信号</li>
+                                    <li>不同市场需调整参数</li>
+                                    <li>强势行情可长期处于极值</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="text-sm text-gray-600 mt-4">
+                            <strong>参数选择：</strong>
+                            <p>常用参数有5、6、12、24等，级别越大信号越可靠但反应越滞后，级别越小反应越灵敏但可能越失真。推荐初学者使用标准14日RSI。</p>
+                        </div>
+                        
+                        <div class="text-sm text-gray-600 mt-4">
+                            <strong>计算方法：</strong>
+                            <p>RSI = 100 - [100 / (1 + RS)]，其中RS为平均上涨幅度除以平均下跌幅度。常用参数为14天，区间为0-100。</p>
+                        </div>
+                        
+                        <div class="text-sm text-gray-600 mt-4">
+                            <strong>建议使用：</strong>
+                            <p>RSI配合其他指标和价格形态效果更佳；可用于判断背离和趋势持续性；在强势或弱势行情中，RSI可能长期维持在高位或低位，单一触及超买超卖区域不足以作为交易信号。</p>
+                        </div>
+                        
+                        <div class="flex justify-end mt-4">
+                            <a href="https://www.investopedia.com/terms/r/rsi.asp" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm flex items-center">
+                                了解更多
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
+                                    <path d="M7 7h10v10"></path>
+                                    <path d="M7 17 17 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KDJ -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow card-hover">
+                    <div class="bg-purple-50 px-6 py-4 border-b border-gray-100">
+                        <h3 class="text-xl font-semibold text-purple-900">KDJ指标</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700 mb-4">源于随机指标(Stochastic Oscillator)的改良版本，在K、D两线的基础上增加了J值，增强了指标敏感度。反映价格在一定时期内的波动情况和超买超卖状态，数值在0-100之间。</p>
+                        
+                        <h4 class="text-lg font-medium text-gray-800 mb-2">应用方法</h4>
+                        <ul class="list-disc list-inside text-gray-700 mb-4">
+                            <li>超买超卖 - K、D、J值超过80为超买，低于20为超卖</li>
+                            <li>金叉死叉 - K线上穿/下穿D线形成买入/卖出信号</li>
+                            <li>三线金叉 - K、D、J三线同时上穿形成强烈买入信号</li>
+                            <li>背离分析 - KDJ与价格走势不同步，预示可能反转</li>
+                        </ul>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <h5 class="font-medium text-green-700 mb-1">优点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>适合震荡行情</li>
+                                    <li>反应价格动能</li>
+                                    <li>识别超买超卖</li>
+                                    <li>J值提前发现超买超卖</li>
+                                    <li>信号准确率较高</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-red-700 mb-1">缺点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>存在滞后性</li>
+                                    <li>震荡市易产生假信号</li>
+                                    <li>可能出现钝化现象</li>
+                                    <li>过于敏感，易"骗线"</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="text-sm text-gray-600 mt-4">
+                            <strong>特殊情况：</strong>
+                            <p>KD高位死叉后继续上涨形成顶部背离，卖出信号；KD低位金叉后继续下跌形成底部背离，买入信号；窄幅盘整和长期单边行情后KDJ效用降低。</p>
+                        </div>
+                        
+                        <div class="flex justify-end mt-4">
+                            <a href="https://www.investopedia.com/terms/s/stochasticoscillator.asp" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm flex items-center">
+                                了解更多
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
+                                    <path d="M7 7h10v10"></path>
+                                    <path d="M7 17 17 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CCI -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow card-hover">
+                    <div class="bg-purple-50 px-6 py-4 border-b border-gray-100">
+                        <h3 class="text-xl font-semibold text-purple-900">CCI指标</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700 mb-4">顺势指标，测量价格相对于其平均值的偏离程度，判断市场超买超卖状态。由Donald Lambert在20世纪80年代提出，最初用于期货市场分析。</p>
+                        
+                        <h4 class="text-lg font-medium text-gray-800 mb-2">使用方法</h4>
+                        <ul class="list-disc list-inside text-gray-700 mb-4">
+                            <li>超买超卖 - CCI>+100考虑卖出，<-100考虑买入</li>
+                            <li>趋势确认 - 从下向上破+100确认上升趋势</li>
+                            <li>背离分析 - 价格与CCI走势不一致预示反转</li>
+                            <li>区间识别 - CCI在±100间波动表示可能盘整</li>
+                        </ul>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <h5 class="font-medium text-green-700 mb-1">优点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>价格变化反应敏感</li>
+                                    <li>适应性强</li>
+                                    <li>判断标准清晰</li>
+                                    <li>综合考虑价格因素</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-red-700 mb-1">缺点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>趋势不明确时易误判</li>
+                                    <li>快速市场可能反应不及</li>
+                                    <li>单独使用易片面</li>
+                                    <li>参数设置影响大</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="text-sm text-gray-600 mt-4">
+                            <strong>计算原理：</strong>
+                            <p>CCI = (TP - MA) / (0.015 * MD)，其中TP为典型价格(最高+最低+收盘)/3，MA为N日TP均值，MD为TP与MA差的平均绝对值，0.015为常数。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 成交量 -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow card-hover">
+                    <div class="bg-purple-50 px-6 py-4 border-b border-gray-100">
+                        <h3 class="text-xl font-semibold text-purple-900">成交量(VOL)</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700 mb-4">衡量市场交易强度和活跃程度的技术指标，通常以柱状图形式展现，不同颜色代表价格上涨(绿色)或下跌(红色)。均量线是特定时期内成交量的平均值。</p>
+                        
+                        <h4 class="text-lg font-medium text-gray-800 mb-2">重要概念</h4>
+                        <ul class="list-disc list-inside text-gray-700 mb-4">
+                            <li>放量 - 成交量大幅增加，活跃度增强</li>
+                            <li>缩量 - 成交量大幅减少，活跃度降低</li>
+                            <li>堆量 - 成交量逐渐增大，带动价格缓慢上升</li>
+                            <li>量价配合 - 涨时量增、跌时量减为强势特征</li>
+                        </ul>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <h5 class="font-medium text-green-700 mb-1">优点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>反应迅速</li>
+                                    <li>易与价格配合分析</li>
+                                    <li>有助识别大资金动向</li>
+                                    <li>适用于各种市场</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-red-700 mb-1">缺点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>低流动性资产不准</li>
+                                    <li>震荡市有效性降低</li>
+                                    <li>仅反映历史交易</li>
+                                    <li>需结合其他指标</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="text-sm text-gray-600 mt-4">
+                            <strong>常见应用：</strong>
+                            <p>底部确认通常需要放量；顶部通常缩量；突破需放量确认；价格上涨而成交量减少可能是上涨动能减弱信号；底部堆量可介入，高位堆量应及时退场。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- OBV -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow card-hover">
+                    <div class="bg-purple-50 px-6 py-4 border-b border-gray-100">
+                        <h3 class="text-xl font-semibold text-purple-900">能量潮(OBV)</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700 mb-4">成交量净额指标，通过累计成交量来预测价格趋势。当收盘价上涨时加上当日成交量，下跌时减去成交量，从而反映市场买卖力量对比和资金流向。</p>
+                        
+                        <h4 class="text-lg font-medium text-gray-800 mb-2">解读方法</h4>
+                        <ul class="list-disc list-inside text-gray-700 mb-4">
+                            <li>趋势判断 - OBV上升表买方强势，下降表卖方强势</li>
+                            <li>趋势确认 - 价格与OBV应同向运动</li>
+                            <li>背离分析 - 价格与OBV走势不一致预示反转</li>
+                            <li>庄家动向 - 帮助判断大资金流向</li>
+                        </ul>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <h5 class="font-medium text-green-700 mb-1">优点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>计算简单易懂</li>
+                                    <li>直观显示力量对比</li>
+                                    <li>确认趋势持续性</li>
+                                    <li>提供先于价格的信号</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-red-700 mb-1">缺点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>存在滞后性</li>
+                                    <li>大波动时可能失真</li>
+                                    <li>应用范围相对单一</li>
+                                    <li>不能直接预测价格</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="text-sm text-gray-600 mt-4">
+                            <strong>计算方法：</strong>
+                            <p>如果当日收盘价高于前一日，则当日OBV = 前一日OBV + 今日成交量；如果低于前一日，则当日OBV = 前一日OBV - 今日成交量；如果相同，则当日OBV = 前一日OBV。</p>
+                        </div>
+                        
+                        <div class="flex justify-end mt-4">
+                            <a href="https://www.investopedia.com/terms/o/onbalancevolume.asp" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm flex items-center">
+                                了解更多
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
+                                    <path d="M7 7h10v10"></path>
+                                    <path d="M7 17 17 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ATR -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow card-hover">
+                    <div class="bg-indigo-50 px-6 py-4 border-b border-gray-100">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 mr-3 flex-shrink-0 bg-indigo-100 rounded-full flex items-center justify-center indicator-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-700">
+                                    <path d="M6 9v11"/>
+                                    <path d="M12 6v14"/>
+                                    <path d="M18 11v9"/>
+                                    <path d="M18 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                                    <path d="M12 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                                    <path d="M6 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-indigo-900">真实波幅(ATR)</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700 mb-4">由威尔斯·威尔德(J. Welles Wilder)开发的波动性指标，测量市场波动幅度而非方向，常用于设置止损点位和仓位规模，在海龟交易系统中扮演重要角色。</p>
+                        
+                        <h4 class="text-lg font-medium text-gray-800 mb-2">应用方式</h4>
+                        <ul class="list-disc list-inside text-gray-700 mb-4">
+                            <li>波动性判断 - ATR值大表示波动性高，小表示波动性低</li>
+                            <li>止损设置 - 通常为当前价格±(1.5-3)倍ATR</li>
+                            <li>仓位管理 - 仓位大小与ATR成反比，保持风险一致</li>
+                            <li>突破确认 - 价格移动超过一定倍数的ATR才算有效突破</li>
+                        </ul>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <h5 class="font-medium text-green-700 mb-1">优点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>适应市场变化</li>
+                                    <li>客观衡量波动</li>
+                                    <li>止损设置更合理</li>
+                                    <li>适用各类市场</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-red-700 mb-1">缺点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>只测量波动不测方向</li>
+                                    <li>参数设置影响大</li>
+                                    <li>有一定滞后性</li>
+                                    <li>需结合其他指标</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="text-sm text-gray-600 mt-4">
+                            <strong>计算方法：</strong>
+                            <p>ATR = [(前一日ATR × (n-1)) + 当日TR] ÷ n，其中TR为以下三者中的最大值：当日最高-当日最低、当日最高-前日收盘的绝对值、当日最低-前日收盘的绝对值。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 平行通道 -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow card-hover">
+                    <div class="bg-rose-50 px-6 py-4 border-b border-gray-100">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 mr-3 flex-shrink-0 bg-rose-100 rounded-full flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-rose-700">
+                                    <path d="M4 6 20 6"/>
+                                    <path d="M4 12 20 12"/>
+                                    <path d="M4 18 20 18"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-rose-900">平行通道</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700 mb-4">由两条平行趋势线构成的价格通道，上轨连接主要高点，下轨连接主要低点。价格在通道内波动，触及边界时往往会反弹，突破边界则可能预示趋势变化。</p>
+                        
+                        <h4 class="text-lg font-medium text-gray-800 mb-2">使用方法</h4>
+                        <ul class="list-disc list-inside text-gray-700 mb-4">
+                            <li>反弹操作 - 价格触及通道下轨考虑买入，触及上轨考虑卖出</li>
+                            <li>突破判断 - 价格突破通道上/下轨，跟随新趋势</li>
+                            <li>通道宽度 - 宽度变化反映波动性变化</li>
+                            <li>通道斜率 - 反映趋势强度，斜率大表示趋势强</li>
+                        </ul>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <h5 class="font-medium text-green-700 mb-1">优点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>直观可视化</li>
+                                    <li>明确的交易区间</li>
+                                    <li>适合趋势和震荡市</li>
+                                    <li>提供明确买卖点</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-red-700 mb-1">缺点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>画法有主观性</li>
+                                    <li>需要定期调整</li>
+                                    <li>震荡加剧时有效性降低</li>
+                                    <li>假突破情况常见</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="text-sm text-gray-600 mt-4">
+                            <strong>中轨意义：</strong>
+                            <p>通道中轨通常作为趋势主线，价格在中轨上方表示偏强，下方表示偏弱。震荡交易者关注边界反弹，趋势交易者则关注突破后的跟随。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 冰川指标 -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
+                    <div class="bg-cyan-50 px-6 py-4 border-b border-gray-100">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 mr-3 flex-shrink-0 bg-cyan-100 rounded-full flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-700">
+                                    <path d="M3 3v18h18"/>
+                                    <path d="M7 15 11 9 17 15"/>
+                                    <path d="M8 12 11 15 20 6"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-cyan-900">冰川指标</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700 mb-4">由中国投资者"冰夏"创立的趋势指标，基于均线系统改进，通过三条不同周期均线（3日、7日、21日）判断市场趋势状态，专为中国A股市场定制优化。</p>
+                        
+                        <h4 class="text-lg font-medium text-gray-800 mb-2">信号系统</h4>
+                        <ul class="list-disc list-inside text-gray-700 mb-4">
+                            <li>红色区域 - 三线多头排列（3>7>21），强势上涨</li>
+                            <li>绿色区域 - 三线空头排列（3<7<21），强势下跌</li>
+                            <li>黄色区域 - 三线交叉排列，震荡整理</li>
+                            <li>量能确认 - 成交量配合趋势方向增加可信度</li>
+                        </ul>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <h5 class="font-medium text-green-700 mb-1">优点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>信号明确直观</li>
+                                    <li>适合中国市场</li>
+                                    <li>过滤震荡行情</li>
+                                    <li>参数优化到位</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-red-700 mb-1">缺点</h5>
+                                <ul class="list-disc list-inside text-gray-700 text-sm">
+                                    <li>存在滞后性</li>
+                                    <li>短期剧烈震荡易误判</li>
+                                    <li>不适用所有品种</li>
+                                    <li>区域切换点准确性有限</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="text-sm text-gray-600 mt-4">
+                            <strong>战法要点：</strong>
+                            <p>进场应在趋势确立后（区域颜色稳定），出场应在趋势转变前（颜色开始变化）。此外，应结合波段高低点、成交量变化等因素综合判断，而非简单跟随颜色变化。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="resources" class="mb-16">
+            <div class="mb-8">
+                <h2 class="text-2xl font-semibold border-b border-gray-200 pb-2 mb-4">新手学习指南</h2>
+                <p class="text-gray-600 mb-6">对于交易新手，推荐以下学习路径和注意事项，帮助您更好地开始交易之旅。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- 学习路径 -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden p-6 hover:shadow-md transition-shadow">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">推荐学习路径</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-gray-50 rounded p-4">
+                            <h4 class="font-medium text-gray-800 mb-2">第一阶段: 基础知识</h4>
+                            <ul class="list-disc list-inside text-gray-700 text-sm">
+                                <li>了解基本市场术语和概念</li>
+                                <li>学习K线图和基本图表分析</li>
+                                <li>理解支撑、阻力和趋势概念</li>
+                                <li>熟悉交易平台操作</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-gray-50 rounded p-4">
+                            <h4 class="font-medium text-gray-800 mb-2">第二阶段: 技术分析入门</h4>
+                            <ul class="list-disc list-inside text-gray-700 text-sm">
+                                <li>学习均线系统和布林带</li>
+                                <li>了解裸K分析方法</li>
+                                <li>掌握MACD和RSI等常用指标</li>
+                                <li>开始练习图表模式识别</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-gray-50 rounded p-4">
+                            <h4 class="font-medium text-gray-800 mb-2">第三阶段: 交易系统构建</h4>
+                            <ul class="list-disc list-inside text-gray-700 text-sm">
+                                <li>学习风险管理和资金管理</li>
+                                <li>深入了解一两种交易理论</li>
+                                <li>构建适合自己的交易系统</li>
+                                <li>开始模拟交易和记录交易日记</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-gray-50 rounded p-4">
+                            <h4 class="font-medium text-gray-800 mb-2">第四阶段: 实战提升</h4>
+                            <ul class="list-disc list-inside text-gray-700 text-sm">
+                                <li>小资金实盘交易积累经验</li>
+                                <li>定期回顾和优化交易系统</li>
+                                <li>学习心理控制和情绪管理</li>
+                                <li>不断学习新知识，保持市场敏感性</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 注意事项 -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden p-6 hover:shadow-md transition-shadow">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">新手交易注意事项</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="bg-red-100 text-red-800 p-1 rounded-full flex-shrink-0 mt-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M18 6 6 18"></path>
+                                    <path d="m6 6 12 12"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800">避免过度交易</h4>
+                                <p class="text-gray-700 text-sm">频繁交易不等于高收益，反而可能增加成本并导致情绪化决策。耐心等待高胜率的交易机会。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-3">
+                            <div class="bg-red-100 text-red-800 p-1 rounded-full flex-shrink-0 mt-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M18 6 6 18"></path>
+                                    <path d="m6 6 12 12"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800">不要盲目追求指标完美</h4>
+                                <p class="text-gray-700 text-sm">没有完美的指标或理论，而是要找到适合自己的交易系统。过度优化可能导致"过度拟合"问题。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-3">
+                            <div class="bg-red-100 text-red-800 p-1 rounded-full flex-shrink-0 mt-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M18 6 6 18"></path>
+                                    <path d="m6 6 12 12"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800">控制风险敞口</h4>
+                                <p class="text-gray-700 text-sm">单笔交易风险不超过总资金的1-2%。重要的不是你赚多少，而是你能坚持多久不被市场淘汰。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-3">
+                            <div class="bg-green-100 text-green-800 p-1 rounded-full flex-shrink-0 mt-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800">保持记录和反思</h4>
+                                <p class="text-gray-700 text-sm">记录每笔交易的理由、结果和感受，定期回顾改进。成功交易者都是从失败中学习的。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-3">
+                            <div class="bg-green-100 text-green-800 p-1 rounded-full flex-shrink-0 mt-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800">情绪管理胜过技术</h4>
+                                <p class="text-gray-700 text-sm">控制贪婪、恐惧和希望这三种情绪，严格执行预先设定的交易计划，不临时改变规则。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-3">
+                            <div class="bg-green-100 text-green-800 p-1 rounded-full flex-shrink-0 mt-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800">顺势而为</h4>
+                                <p class="text-gray-700 text-sm">与市场趋势作对是最昂贵的错误之一。学会识别趋势，并在趋势方向交易，提高胜率。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-gray-100 rounded-lg p-6">
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">最后的建议</h3>
+                <div class="text-gray-700">
+                    <p class="mb-4">交易是一场长期的自我修炼，而非一夜暴富的途径。成功的交易者通常具备以下特质：</p>
+                    <ul class="list-disc list-inside mb-4">
+                        <li>专注、耐心和纪律</li>
+                        <li>持续学习的态度</li>
+                        <li>对市场的尊重</li>
+                        <li>能够接受和分析失败</li>
+                        <li>严格的风险管理习惯</li>
+                    </ul>
+                    <p>记住，技术分析工具只是决策辅助手段，而非预测未来的水晶球。最终成功的关键在于构建一个适合自己性格和风险偏好的完整交易系统，并严格执行。</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        window.addEventListener("wheel", (e)=> {
+            const isPinching = e.ctrlKey
+            if(isPinching) e.preventDefault()
+        }, { passive: false })
+    </script>
+</body>
+</html>
